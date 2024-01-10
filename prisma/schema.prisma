@@ -1,0 +1,18 @@
+datasource db {
+  //in production, you **must** use .env
+  url      = "postgresql://root:root@localhost:5432/search"
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SearchKeyword {
+  id          String @id
+  keyword     String @unique
+  searchCount Int    @map("search_count")
+  version     Int
+
+  @@map("search_keyword")
+}
